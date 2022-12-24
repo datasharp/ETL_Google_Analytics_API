@@ -93,17 +93,17 @@ def google_analytics_reporting_api_data_extraction(viewID,dim,met,start_date,end
     
        url="".join([api_url,viewID,'&start-date=',start_date,'&end-date=',end_date,'&metrics=',met1,'&dimensions=',dim1,'&max-results=1000000',condition,'&access_token=',rt])
     
-       data=pd.DataFrame()
+       df=pd.DataFrame()
     
        try:
          r = requests.get(url)
                 
          try:
-            data=pd.DataFrame(list((r.json())['rows']),columns=[re.sub("ga:","",i) for i in dim+met])
-            data['date_range']="{}_{}".format(start_date, end_date)
+            df=pd.DataFrame(list((r.json())['rows']),columns=[re.sub("ga:","",i) for i in dim+met])
+            df['date_range']="{}_{}".format(start_date, end_date)
             print("data extraction is successfully completed")
            
-            return data
+            return df
          except:
             print((r.json()))
        except:
@@ -119,13 +119,9 @@ Start_a_Chapter_Goal_5_Conversion_Rate	Start_a_Chapter_Goal_5_Completions'''
 
 viewID=os.getenv('view_id')
 dim=["ga:channelGrouping"]
-met=['ga:goal5Completions', "ga:users", "ga:newUsers", "ga:sessions"]
-start_date='2022-12-01'
-end_date='2022-12-23'
+met=['ga:goal5Completions','ga:goal5ConversionRate', "ga:users", "ga:newUsers", "ga:sessions", "ga:bounceRate", "ga:sessionDuration"]
+
 transaction_type='Goal'
 goal_number='5'
 refresh_token=refresh_token
 condition='' 
-# sort the data set by users in descending order
-
-data=google_analytics_reporting_api_data_extraction(viewID,dim,met,start_date,end_date,refresh_token,transaction_type,goal_number,condition)
