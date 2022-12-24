@@ -1,3 +1,4 @@
 .env
 credential.json
 notebook.ipynb
+__pycache__
