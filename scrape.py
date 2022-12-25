@@ -28,6 +28,7 @@ import httplib2
 from oauth2client import GOOGLE_REVOKE_URI, GOOGLE_TOKEN_URI, client
 import requests
 import pandas as pd
+from datetime import datetime, timedelta
 
 
 #function check whether file exist in the path or not
@@ -125,3 +126,7 @@ transaction_type='Goal'
 goal_number='5'
 refresh_token=refresh_token
 condition='' 
+
+date_range = "{}_{}".format(start_date, end_date)
+
+

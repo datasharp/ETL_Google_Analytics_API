@@ -1,5 +1,4 @@
 import pandas as pd
-from main import df
 
 # CLEANING
 
