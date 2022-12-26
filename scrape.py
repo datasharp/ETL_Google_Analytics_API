@@ -120,13 +120,11 @@ Start_a_Chapter_Goal_5_Conversion_Rate	Start_a_Chapter_Goal_5_Completions'''
 
 viewID=os.getenv('view_id')
 dim=["ga:channelGrouping"]
-met=['ga:goal5Completions','ga:goal5ConversionRate', "ga:users", "ga:newUsers", "ga:sessions", "ga:bounceRate", "ga:sessionDuration"]
+met=['ga:goal5Completions','ga:goal5ConversionRate', "ga:users", "ga:newUsers", "ga:sessions", "ga:bounceRate", "ga:avgSessionDuration", "ga:pageviewsPerSession"]
 
 transaction_type='Goal'
 goal_number='5'
 refresh_token=refresh_token
 condition='' 
-
-date_range = "{}_{}".format(start_date, end_date)
 
 

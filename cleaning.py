@@ -17,6 +17,10 @@ def remove_percent_and_round(df, col):
     df[col] = df[col].round(2)
     return df
 
+def round_nearest_two(df, col):
+    df[col] = df[col].astype(float).round(2)
+    return df
+
 
 def convert_numeric(df):
     for col in df.columns:

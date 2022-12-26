@@ -1,9 +1,8 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+from config import date_range, rolling_window
 
-from scrape import date_range
-#from main import *
 
 
 def bar_plot(df, x, y):
