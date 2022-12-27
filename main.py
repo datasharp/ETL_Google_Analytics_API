@@ -1,9 +1,11 @@
-from scrape import *
-from cleaning import clean_cols, clean_vals, remove_percent_and_round, convert_numeric, round_nearest_two
-from visualize import bar_plot, bar_plot_with_twinx_line
+from src.scrape import *
+from src.cleaning import clean_cols, clean_vals, remove_percent_and_round, convert_numeric, round_nearest_two
+from src.visualize import bar_plot, bar_plot_with_twinx_line
 from datetime import datetime, timedelta
 from config import *
-from upload_mysql_func import upload_mysql
+from src.upload_mysql_func import upload_mysql
+
+
 
 # api call function
 
@@ -40,4 +42,8 @@ bar_plot_with_twinx_line(df, 'channelGrouping', 'goal5Completions', 'goal5Conver
 upload_mysql(df)
 
 
+
+'''export df to_csv'''
+
+#df.to_csv('/Users/rose/Documents/nstem_dir/webscrape/data/df2',index=False)
 
