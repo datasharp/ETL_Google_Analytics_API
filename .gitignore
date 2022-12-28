@@ -2,3 +2,8 @@
 credential.json
 notebook.ipynb
 __pycache__
+/env
+
+.ipynb_checkpoints
+
+/data

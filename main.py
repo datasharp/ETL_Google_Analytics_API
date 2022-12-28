@@ -7,6 +7,7 @@ from src.upload_mysql_func import upload_mysql
 
 
 
+
 # api call function
 
 df = google_analytics_reporting_api_data_extraction(viewID,dim,met,start_date,end_date,refresh_token,\
@@ -42,8 +43,6 @@ bar_plot_with_twinx_line(df, 'channelGrouping', 'goal5Completions', 'goal5Conver
 upload_mysql(df)
 
 
-
 '''export df to_csv'''
-
 #df.to_csv('/Users/rose/Documents/nstem_dir/webscrape/data/df2',index=False)
 
