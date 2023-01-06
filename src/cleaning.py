@@ -27,3 +27,19 @@ def convert_numeric(df):
         if df[col].dtype == 'object':
             df[col] = pd.to_numeric(df[col], errors='ignore')
     return df
+
+
+
+def day_index_add_month_and_day(df):
+    df.iloc[:,0] = pd.to_datetime(df['date'])
+    df['month'] = df['date'].dt.month_name()
+    df['day_of_week'] = df['date'].dt.day_name()
+    return df
+
+
+
+
+
+
+if __name__ == "__main__" :
+    day_index_add_month_and_day()

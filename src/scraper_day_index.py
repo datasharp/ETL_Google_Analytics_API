@@ -29,7 +29,7 @@ import httplib2
 from oauth2client import GOOGLE_REVOKE_URI, GOOGLE_TOKEN_URI, client
 import requests
 import pandas as pd
-
+from datetime import datetime, timedelta
 
 
 #function check whether file exist in the path or not
@@ -63,20 +63,20 @@ client_secret = os.getenv('client_secret')
 refresh_token = get_refresh_token(client_id,client_secret)
 
 
-#function return the google analytics data for given dimension, metrics, start data, end data access token, type,goal number, condition'''
+#function return the google analytics data for given dim_2ension, met_2rics, start data, end data access token, type,goal number, condition'''
 
-def google_analytics_reporting_api_data_extraction(viewID,dim,met,start_date,end_date,refresh_token,transaction_type,goal_number,condition):
+def google_analytics_reporting_api_data_extraction_2(viewID,dim_2,met_2,start_date,end_date,refresh_token,transaction_type,goal_number,condition):
     
-    viewID=viewID;dim=dim;met=met;start_date=start_date;end_date=end_date;refresh_token=refresh_token;transaction_type=transaction_type;condition=condition
+    viewID=viewID;dim_2=dim_2;met_2=met_2;start_date=start_date;end_date=end_date;refresh_token=refresh_token;transaction_type=transaction_type;condition=condition
     goal_number=goal_number
     viewID="".join(['ga%3A',viewID])
     
     if transaction_type=="Goal":
-        met1="%2C".join([re.sub(":","%3A",i) for i in met]).replace("XX",str(goal_number))
+        met1="%2C".join([re.sub(":","%3A",i) for i in met_2]).replace("XX",str(goal_number))
     elif transaction_type=="Transaction":
-        met1="%2C".join([re.sub(":","%3A",i) for i in met])
+        met1="%2C".join([re.sub(":","%3A",i) for i in met_2])
         
-    dim1="%2C".join([re.sub(":","%3A",i) for i in dim])
+    dim1="%2C".join([re.sub(":","%3A",i) for i in dim_2])
     
     if where_json('credential.json')==True:
        with open('credential.json') as json_file:  
@@ -95,17 +95,17 @@ def google_analytics_reporting_api_data_extraction(viewID,dim,met,start_date,end
     
        url="".join([api_url,viewID,'&start-date=',start_date,'&end-date=',end_date,'&metrics=',met1,'&dimensions=',dim1,'&max-results=1000000',condition,'&access_token=',rt])
     
-       df=pd.DataFrame()
+       day_index=pd.DataFrame()
     
        try:
          r = requests.get(url)
                 
          try:
-            df=pd.DataFrame(list((r.json())['rows']),columns=[re.sub("ga:","",i) for i in dim+met])
-            df['date_range']="{}_{}".format(start_date, end_date)
+            day_index=pd.DataFrame(list((r.json())['rows']),columns=[re.sub("ga:","",i) for i in dim_2+met_2])
+            #df['date_range']="{}_{}".format(start_date, end_date)
             print("data extraction is successfully completed")
            
-            return df
+            return day_index
          except:
             print((r.json()))
        except:
@@ -115,13 +115,19 @@ def google_analytics_reporting_api_data_extraction(viewID,dim,met,start_date,end
 
 # When Transaction type is ‘Goal’ and has a condition
 
-'''Default_Channel_Grouping	Users	New_Users	Sessions	
-Bounce_Rate	Pages_Session	Avg._Session_Duration	
-Start_a_Chapter_Goal_5_Conversion_Rate	Start_a_Chapter_Goal_5_Completions'''
+''',Day_Index,Start_a_Chapter_Goal_5_Completions,Month,Day_of_Week
+1,2022-10-31,2,OCTOBER,MONDAY
+2,2022-11-01,3,NOVEMBER,TUESDAY
+3,2022-11-02,1,NOVEMBER,WEDNESDAY
+4,2022-11-03,2,NOVEMBER,THURSDAY
+5,2022-11-04,2,NOVEMBER,FRIDAY
+6,2022-11-05,1,NOVEMBER,SATURDAY
+7,2022-11-06,4,NOVEMBER,SUNDAY
+'''
 
 viewID=os.getenv('view_id')
-dim=["ga:channelGrouping"]
-met=['ga:goal5Completions','ga:goal5ConversionRate', "ga:users", "ga:newUsers", "ga:sessions", "ga:bounceRate", "ga:avgSessionDuration", "ga:pageviewsPerSession"]
+dim_2=['ga:date']
+met_2=['ga:goal5Completions']
 
 transaction_type='Goal'
 goal_number='5'
@@ -131,9 +137,12 @@ condition=''
 
 from config import *
 
-df = google_analytics_reporting_api_data_extraction(viewID,dim,met,start_date,end_date,refresh_token,\
-                                                        transaction_type,goal_number,condition)
-# api call function
+
+day_index = google_analytics_reporting_api_data_extraction_2(viewID,dim_2,met_2,start_date,end_date,refresh_token,\
+    transaction_type,goal_number,condition)   
+
+
+
 
 if __name__ == "__main__" :
-    google_analytics_reporting_api_data_extraction()
+    google_analytics_reporting_api_data_extraction_2()
