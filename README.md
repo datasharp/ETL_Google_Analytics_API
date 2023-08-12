@@ -27,8 +27,8 @@ Collaboration: Team members can work on different modules simultaneously, enhanc
 The repository is structured as follows:
 
 - `src/`: Directory containing the modular Python scripts.
-  - `scrape.py`: Script for data extraction from Google Analytics API.
-  - `scraper_day_index.py`: Script for adding day index to data.
+  - `scrape.py`: This script is responsible for data extraction from the Google Analytics API. It retrieves a dataset with aggregated values over a specified date range, capturing key attributes such as user engagement metrics, sessions, pageviews, and goal completions. The data extraction is configured to gather information from the chosen start date to the end date, focusing on selected attributes to provide insights into user interactions and performance metrics.
+  - `scraper_day_index.py`: This script is designed for extracting daily information data. The dataset it generates contains two columns: the date and a metric representing the number of chapters that were started on each day. This data is valuable for tracking daily trends and analyzing the growth or activity of chapter starts over time.
   - `cleaning.py`: Data cleaning and transformation scripts.
   - `visualize.py`: Data visualization scripts using Matplotlib and Seaborn.
   - `upload_mysql_func.py`: Script for uploading data to MySQL database.
