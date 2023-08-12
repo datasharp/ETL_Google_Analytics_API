@@ -1,7 +1,7 @@
 # Google Analytics ETL and Data Visualization
 
 
-Welcome to the Google Analytics ETL and Data Visualization project repository! This repository showcases a Python-based ETL pipeline for extracting data from the Google Analytics API, performing data cleaning and transformation, creating data visualizations using Matplotlib and Seaborn, and storing the processed data in a MySQL database. The project is organized in a modular structure to facilitate extensibility and maintainability.
+Welcome to the Google Analytics ETL and Data Visualization project repository! This repository showcases a Python-based ETL pipeline for extracting data from the Google Analytics API, performing data cleaning and transformation, creating data visualizations using Matplotlib and Seaborn, and storing the processed data in a MySQL database. The project is organized in a modular structure to facilitate maintainability.
 
 ## Table of Contents
 
