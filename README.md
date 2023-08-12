@@ -7,7 +7,7 @@ Welcome to the Google Analytics ETL and Data Visualization project repository! T
 
 - [Introduction](#introduction)
 - [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
+- [Configuration](#Configuration)
 - [Usage](#usage)
 
 ## Introduction
